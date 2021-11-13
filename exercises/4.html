@@ -6,8 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Screen Readers</title>
     <link rel="stylesheet" href="../css/style.css" />
+
+    <style>
+      .skip-link {
+        background-color: white;
+        left: -100%;
+        padding: 10px;
+        position: absolute;
+      }
+
+      .skip-link:focus {
+        left: 0;
+      }
+    </style>
   </head>
   <body>
+    <a class="skip-link" href="#container">Skip to content</a>
+
     <header>
       <ul>
         <li><a href="../index.html">Home</a></li>
