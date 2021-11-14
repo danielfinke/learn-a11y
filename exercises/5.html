@@ -6,7 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Screen Readers</title>
     <link rel="stylesheet" href="../css/style.css" />
-    <style></style>
+    <style>
+      @media screen and (prefers-color-scheme: dark) {
+        body:not(.light-mode) {
+          background-color: black;
+        }
+
+        body:not(.light-mode),
+        body:not(.light-mode) header ul li a {
+          color: white;
+        }
+      }
+
+      body:not(.light-mode) {
+        background-color: black;
+      }
+
+      body:not(.light-mode),
+      body:not(.light-mode) header ul li a {
+        color: white;
+      }
+    </style>
   </head>
   <body class="main">
     <header>
@@ -26,5 +46,29 @@
         <input id="input" type="checkbox" />
       </label>
     </div>
+
+    <script>
+      const body = document.body;
+      const darkModeToggle = document.getElementById('input');
+
+      const prefersColorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      if (prefersColorSchemeQuery.matches) {
+        darkModeToggle.checked = true;
+      } else {
+        body.classList.add('light-mode');
+      }
+
+      prefersColorSchemeQuery.addEventListener('change', (e) => {
+        const darkModeEnabled = e.matches;
+
+        body.classList.toggle('light-mode', !darkModeEnabled);
+        darkModeToggle.checked = darkModeEnabled;
+      });
+
+      darkModeToggle.addEventListener('change', () => {
+        body.classList.toggle('light-mode');
+      });
+    </script>
   </body>
 </html>
